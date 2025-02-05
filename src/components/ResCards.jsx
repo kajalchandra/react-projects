@@ -1,7 +1,7 @@
 const ResCards = ({resData})=>{
 // const ResCards = (props)=>{
     //it is equivalen to const resData = props.resData
-    console.log("resdata",resData)
+    // console.log("resdata",resData)
     const {name,cuisines,areaName,avgRatingString,cloudinaryImageId} = resData.info
     
   
