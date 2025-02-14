@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 const Header = ()=>{
   // let btnName = "LogIn"
   const [btnName , setbtnName] = useState("LogIn")
@@ -21,11 +22,11 @@ const Header = ()=>{
           </div>
           
           <ul className="flex ">
-            <li className="mx-3 text-2xl font-semibold hover:text-green-700">Home</li>
-            <li className="mx-3 text-2xl font-semibold hover:text-green-700">About us</li>
-            <li className="mx-3 text-2xl font-semibold hover:text-green-700">Contact us</li>
-            <li className="mx-5 text-2xl font-semibold hover:text-green-700">Cart</li>
-            <button className="ml-5 mr-7 text-2xl font-semibold border border-white px-2 py-2 bg-white rounded-md" onClick={handleLog}>{btnName}</button>
+            <li className="mx-3 text-2xl font-semibold hover:text-green-700 cursor-pointer"><Link to={"/"}>Home</Link></li>
+            <li className="mx-3 text-2xl font-semibold hover:text-green-700 cursor-pointer"><Link to={"/aboutus"}>About us</Link></li>
+            <li className="mx-3 text-2xl font-semibold hover:text-green-700 cursor-pointer"><Link to={"/Contactus"}>Contact us</Link></li>
+            <li className="mx-5 text-2xl font-semibold hover:text-green-700 cursor-pointer"><Link to={"/cart"}>Cart</Link ></li>
+            <button className="ml-5 mr-7 text-2xl font-semibold border border-white px-2 py-2 bg-white rounded-md cursor-pointer" onClick={handleLog}>{btnName}</button>
           </ul>
         </div>
     )

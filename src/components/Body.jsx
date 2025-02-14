@@ -2,6 +2,7 @@
 import resList from "../utils/mockData"
 import { useEffect, useState } from "react"
 import ResCards from "./ResCards"
+import { Link } from "react-router-dom"
 
 import ShimmerContainer from "./ShimmerContainer"
 
@@ -66,7 +67,7 @@ const Body = ()=>{
            
             <div className="border border-b-black h-full flex flex-wrap ">
            {restaurant.map((restaurant)=>
-            <ResCards key={restaurant.info.id} resData={restaurant}/>
+           <Link to={"/restaurant/"+restaurant.info.id} key={restaurant.info.id}><ResCards  resData={restaurant}/></Link> 
            )}
            </div>
         </div>
