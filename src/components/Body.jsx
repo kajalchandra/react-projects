@@ -1,9 +1,9 @@
 //import ResContainer from "./ResContainer"
-import resList from "../utils/mockData"
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { useEffect } from "react"
 import ResCards from "./ResCards"
 import { Link } from "react-router-dom"
-
+import useOnlineStatus from "../utils/useOnlineStatus"
 import ShimmerContainer from "./ShimmerContainer"
 
 
@@ -31,6 +31,9 @@ const Body = ()=>{
       console.log("filteredRestaurant",filteredRestaurant)
       setrestaurant(filteredRestaurant)
     }
+
+    const onlineStatus = useOnlineStatus()
+    if(onlineStatus === false) return <h1>Looks like you are offline!! please check your internet connection</h1>
 
     if(restaurant.length === 0){
         return <ShimmerContainer/>
