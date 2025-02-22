@@ -1,17 +1,21 @@
 //import ResContainer from "./ResContainer"
 import { useState } from "react"
 import { useEffect } from "react"
-import ResCards from "./ResCards"
+import ResCards,{isOpenLable} from "./ResCards"
 import { Link } from "react-router-dom"
 import useOnlineStatus from "../utils/useOnlineStatus"
 import ShimmerContainer from "./ShimmerContainer"
+
+const OpenLableRestaurant = isOpenLable(ResCards)
+
+
 
 
 const Body = ()=>{
     const [originalList,setoriginalList] = useState([])
    const[restaurant, setrestaurant]= useState([])
    const [searchText , setsearchText]= useState("")
-   console.log("body rendered")
+   console.log("body rendered",originalList)
    useEffect(()=>{
     fetchData()
    },[])
@@ -70,7 +74,9 @@ const Body = ()=>{
            
             <div className="border border-b-black h-full flex flex-wrap ">
            {restaurant.map((restaurant)=>
-           <Link to={"/restaurant/"+restaurant.info.id} key={restaurant.info.id}><ResCards  resData={restaurant}/></Link> 
+           <Link to={"/restaurant/"+restaurant.info.id} key={restaurant.info.id}>
+            {restaurant.info.isOpen? <OpenLableRestaurant resData={restaurant}/>:<ResCards  resData={restaurant}/>}
+            </Link> 
            )}
            </div>
         </div>

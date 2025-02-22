@@ -20,4 +20,16 @@ const ResCards = ({resData})=>{
         </div>
     )
 }
+
+//hoc , it is a fucntion which takes a component as input and enhances it and returns us a component
+export const isOpenLable = (ResCards)=>{
+    return (props) =>{
+        return(
+            <div>
+                <label className="absolute bg-black text-white m-2 p-2 rounded">Open</label>
+                <ResCards {...props}/>
+            </div>
+        )
+    }
+}
 export default ResCards
