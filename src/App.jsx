@@ -5,11 +5,13 @@ import Body from './components/Body'
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 import Aboutus from './components/Aboutus'
 import Contactus from './Contactus'
-import { Children } from 'react'
+import { Children, useEffect } from 'react'
 import RestaurantMenu from './components/RestaurantMenu'
 import Error from './components/Error'
 //import Grocery from './components/Grocery'
 import { lazy,Suspense } from 'react'
+import UserContext from './utils/UserContext'
+import { useState } from 'react'
 
 
 //   1. Lazy Loading
@@ -24,14 +26,23 @@ const Grocery = lazy(()=> import('./components/Grocery'))
 
 function App() {
 
+  const [userName ,setUserName ] = useState("")
+  useEffect(()=>{
+    const data = {
+      name : "Kajal kumari"
+    }
+    setUserName(data.name)
+  },[])
 
 console.log(<Body/>) //this is an object at the end of the day, this object is basically react virtual dom
   return (
     <>
-      
-    <Header/>
-    {/* <Body/> */}
-    <Outlet/>
+    <UserContext.Provider value={{loggedInUser : userName}}>
+        <Header/>
+        {/* <Body/> */}
+        <Outlet/>
+    </UserContext.Provider>
+   
   
     </>
   )
