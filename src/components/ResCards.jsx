@@ -1,8 +1,12 @@
+import { useContext } from "react"
+import UserContext from "../utils/UserContext"
+
 const ResCards = ({resData})=>{
 // const ResCards = (props)=>{
     //it is equivalen to const resData = props.resData
     // console.log("resdata",resData)
     const {name,cuisines,areaName,avgRatingString,cloudinaryImageId} = resData.info
+    const {loggedInUser} = useContext(UserContext)
     
   
     return(
@@ -16,6 +20,7 @@ const ResCards = ({resData})=>{
                 <h3 className="text-left font-semibold ml-2 text-gray-600">{cuisines.join(" ,")}</h3>
                 <h3 className="text-left font-semibold ml-2 text-gray-600">{areaName}</h3>
                 <h3 className="text-left font-semibold ml-2 text-gray-600">{avgRatingString}</h3>
+                <h4 className="text-left font-semibold ml-2 text-gray-600">{loggedInUser}</h4>
             </div>
         </div>
     )

@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import useOnlineStatus from "../utils/useOnlineStatus"
+import UserContext from "../utils/UserContext"
 
 const Header = ()=>{
   // let btnName = "LogIn"
@@ -16,6 +17,8 @@ const Header = ()=>{
     console.log(btnName)
   }
   const onlineStatus = useOnlineStatus()
+  const {loggedInUser} = useContext(UserContext)
+  console.log('loggedinuser',loggedInUser)
 
   
     return(
@@ -35,6 +38,7 @@ const Header = ()=>{
             <li className="mx-5 text-2xl font-semibold hover:text-green-700 cursor-pointer"><Link to={"/cart"}>Cart</Link ></li>
             <li className="mx-5 text-2xl font-semibold hover:text-green-700 cursor-pointer"><Link to={"/grocery"}>Grocery</Link ></li>
             <button className="ml-5 mr-7 text-2xl font-semibold border border-white px-2 py-2 bg-white rounded-md cursor-pointer" onClick={handleLog}>{btnName}</button>
+            <li className="mx-5 text-2xl ">{loggedInUser}</li>
           </ul>
         </div>
     )

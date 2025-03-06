@@ -2,12 +2,14 @@ import ItemList from "./ItemList"
 import { useState } from "react"
 
 
-const RestaurantCategory = (data) => {
-    const [showItems , setShowItems] = useState(false)
+const RestaurantCategory = ({data, showItems,setShowIndex }) => {
+    //const [showItems , setShowItems] = useState(false)
     console.log("data",data)
+    console.log('showItems',showItems)
+    console.log('setshowIndex:',setShowIndex)
 
     const handleClick = () => {
-        setShowItems(!showItems)
+       setShowIndex()
     }
   return (
     <div>
@@ -16,12 +18,12 @@ const RestaurantCategory = (data) => {
             <div className="flex justify-between"
             onClick={handleClick}
             >
-                <span className="font-bold">{data.data.title} ({data.data.itemCards.length})</span>
+                <span className="font-bold">{data.title} ({data.itemCards.length})</span>
                 <span>⬇️</span>
             </div>
         
           {/* Accordion Body */}
-         {showItems && <ItemList  items={data.data.itemCards}/>}
+         {showItems && <ItemList  items={data.itemCards}/>}
       </div>
       
         

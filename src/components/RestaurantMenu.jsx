@@ -2,13 +2,14 @@
 import ShimmerContainer from "./ShimmerContainer"
 import { useParams } from "react-router-dom"
 import useRestaurantMenu from "../utils/useRestaurantMenu"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import RestaurantCategory from "./RestaurantCategory"
 
 
 const RestaurantMenu = () => {
   // const [resName,setresName] = useState(null)
   // const[resMenuInfo,setresMenuInfo]= useState(null)
+  const [showIndex, setShowIndex] = useState(null)
   const params = useParams()
   console.log("params",params)
   const resId = params.resId
@@ -32,8 +33,11 @@ if(resMenuInfo === null){
        
      
       {/* categories accordions */}
-      {categories.map((category) => (
-          <RestaurantCategory data = {category?.card?.card}/>
+      {categories.map((category,index) => (
+        //controlled component , now parent is controlling
+          <RestaurantCategory key = {category?.card.card.name} data = {category?.card?.card}
+          showItems = {index === showIndex ? true : false}
+          setShowIndex = {() => setShowIndex(index)}/>
       ))}
     </div>
   )
