@@ -12,6 +12,9 @@ import Error from './components/Error'
 import { lazy,Suspense } from 'react'
 import UserContext from './utils/UserContext'
 import { useState } from 'react'
+import { Provider } from 'react-redux'
+import appStore from './utils/appStore'
+import Cart from './components/Cart'
 
 
 //   1. Lazy Loading
@@ -37,11 +40,15 @@ function App() {
 console.log(<Body/>) //this is an object at the end of the day, this object is basically react virtual dom
   return (
     <>
-    <UserContext.Provider value={{loggedInUser : userName}}>
-        <Header/>
-        {/* <Body/> */}
-        <Outlet/>
-    </UserContext.Provider>
+    {/* here store is a prop */}
+    <Provider store={appStore}>
+        <UserContext.Provider value={{loggedInUser : userName}}>
+            <Header/>
+            {/* <Body/> */}
+            <Outlet/>
+        </UserContext.Provider>
+    </Provider>
+   
    
   
     </>
@@ -67,6 +74,10 @@ export const appRouter = createBrowserRouter([
      {
       path:"/restaurant/:resId",
       element : <RestaurantMenu/> 
+     },
+     {
+      path: "/cart",
+      element : <Cart/>
      },
      {
       path:"/grocery",

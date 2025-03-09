@@ -1,7 +1,17 @@
+import { useDispatch } from "react-redux"
+import { addItem } from "../utils/cartSlice"
 
 
 const ItemList = ({items}) => {
     console.log("items",items)
+    // dispatch is also a hook
+    const dispatch = useDispatch()
+    const handleAddItem = (item) =>{
+      //1st step dispatch an action
+      dispatch(addItem(item))
+    }
+
+
   return (
     <div>
         
@@ -26,7 +36,11 @@ const ItemList = ({items}) => {
                     <img src= {"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,h_600/"+item.card.info.imageId}
                     className="w-[560px] "></img>
                     <div className="absolute ">
-                    <button className="p-2 bg-black rounded-md text-white  ">Add + </button>
+                    <button 
+                    className="p-2 bg-black rounded-md text-white"
+                    //handleAddItem is working on this only item which we pass as argument
+                    onClick={()=>handleAddItem(item)}>Add + </button> 
+                    {/* onClick={handleAddItem(item)}>Add + </button> difference between the above two*/}
                     </div>
                     
                 </div>
