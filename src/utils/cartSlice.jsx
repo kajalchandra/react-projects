@@ -13,8 +13,13 @@ const cartSlice = createSlice({
         removeItem : (state)=>{
             state.items.pop()
         },
+        //originalState = {items : ["pizza"]}
         clearCart : (state) =>{
+            //RTK - either mutating the existing state or return a new state
+            // state.items.length = 0; // originlState = []
             state.items.length = 0
+
+            //return {items: []} ; this new [] will be replaced inside originalState = []
         }
     }
 })
